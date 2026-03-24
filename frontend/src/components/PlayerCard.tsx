@@ -8,10 +8,20 @@ interface PlayerCardProps {
   onRebuy?: () => void
   onCashOut?: () => void
   onRevokeCashOut?: () => void
+  /** 已记录提前离场（含带出筹码为 0） */
+  hasEarlyCashOutRecorded?: boolean
   isSettled?: boolean
 }
 
-export default function PlayerCard({ player, showNet, onRebuy, onCashOut, onRevokeCashOut, isSettled }: PlayerCardProps) {
+export default function PlayerCard({
+  player,
+  showNet,
+  onRebuy,
+  onCashOut,
+  onRevokeCashOut,
+  hasEarlyCashOutRecorded = false,
+  isSettled,
+}: PlayerCardProps) {
   const { t } = useI18n()
   
   return (
@@ -22,7 +32,7 @@ export default function PlayerCard({ player, showNet, onRebuy, onCashOut, onRevo
           <div className="font-medium text-white">{player.name}</div>
           <div className="text-sm text-gray-400">
             {t.player.buyIn}: {formatCents(player.buyIn)}
-            {player.cashOut > 0 && !isSettled && (
+            {(player.cashOut > 0 || hasEarlyCashOutRecorded) && !isSettled && (
               <span className="ml-2 text-green-400">
                 · {t.player.cashOut}: {formatCents(player.cashOut)}
                 {onRevokeCashOut && (

@@ -5,6 +5,7 @@ import { useHistoryStore } from '../store/historyStore'
 import { useI18n } from '../i18n'
 import type { PokerSession, TransactionLog } from '../types'
 import { formatCents } from '../utils/format'
+import { hasActiveEarlyCashOutRecorded } from '../utils/session'
 
 function formatLogTime(timestamp: number, locale: string): string {
   const d = new Date(timestamp)
@@ -144,7 +145,8 @@ export default function SessionPage() {
 
   const handleRemoveTransfer = async (transferId: string) => {
     if (!numericId) return
-    
+    if (!confirm(t.session.removeTransferConfirm)) return
+
     try {
       const updated = await api.removeTransfer(numericId, transferId, adminPassword)
       setSession(updated)
@@ -277,17 +279,22 @@ export default function SessionPage() {
             </div>
           ) : (
             <div className="space-y-3">
-              {session.players.map((player) => (
-                <PlayerCard
-                  key={player.id}
-                  player={player}
-                  showNet={isSettled}
-                  isSettled={isSettled}
-                  onRebuy={isAdmin ? () => setRebuyPlayerId(player.id) : undefined}
-                  onCashOut={isAdmin ? () => setCashOutPlayerId(player.id) : undefined}
-                  onRevokeCashOut={isAdmin && player.cashOut > 0 ? () => handleRevokeCashOut(player.id) : undefined}
-                />
-              ))}
+              {session.players.map((player) => {
+                const logs = session.logs ?? []
+                const earlyRecorded = hasActiveEarlyCashOutRecorded(player, logs)
+                return (
+                  <PlayerCard
+                    key={player.id}
+                    player={player}
+                    showNet={isSettled}
+                    isSettled={isSettled}
+                    hasEarlyCashOutRecorded={earlyRecorded}
+                    onRebuy={isAdmin ? () => setRebuyPlayerId(player.id) : undefined}
+                    onCashOut={isAdmin ? () => setCashOutPlayerId(player.id) : undefined}
+                    onRevokeCashOut={isAdmin && earlyRecorded ? () => handleRevokeCashOut(player.id) : undefined}
+                  />
+                )
+              })}
             </div>
           )}
         </div>

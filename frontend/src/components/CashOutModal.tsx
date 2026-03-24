@@ -13,12 +13,16 @@ export default function CashOutModal({ playerName, onClose, onCashOut }: CashOut
   const [amount, setAmount] = useState('')
   const [loading, setLoading] = useState(false)
 
+  const trimmed = amount.trim()
+  const parsed = parseFloat(trimmed)
+  const canSubmit = trimmed !== '' && !Number.isNaN(parsed) && parsed >= 0
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!amount) return
+    if (!canSubmit) return
 
     setLoading(true)
-    await onCashOut(parseDollarsToCents(amount))
+    await onCashOut(parseDollarsToCents(trimmed))
     setLoading(false)
   }
 
@@ -69,7 +73,7 @@ export default function CashOutModal({ playerName, onClose, onCashOut }: CashOut
             </button>
             <button
               type="submit"
-              disabled={!amount || loading}
+              disabled={!canSubmit || loading}
               className="btn-primary flex-1"
             >
               {loading ? t.common.processing : t.cashOut.confirm}

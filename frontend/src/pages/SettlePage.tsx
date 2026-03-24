@@ -5,6 +5,7 @@ import { useI18n } from '../i18n'
 import { canModify, getStoredAdminPassword } from '../store/adminStore'
 import type { PokerSession, BalanceMode, TransferMode } from '../types'
 import { formatCents, parseDollarsToCents } from '../utils/format'
+import { hasActiveEarlyCashOutRecorded } from '../utils/session'
 import ChipLoader from '../components/ChipLoader'
 
 export default function SettlePage() {
@@ -40,8 +41,11 @@ export default function SettlePage() {
         setDealerPlayerId(data.players[0]?.id ?? null)
         const initial: Record<string, string> = {}
         data.players.forEach(p => {
-          // 提前离场的玩家预填筹码量
-          initial[p.id] = p.cashOut > 0 ? (p.cashOut / 100).toFixed(2) : ''
+          // 提前离场的玩家预填筹码量（含带出为 0）
+          initial[p.id] =
+            p.cashOut > 0 || hasActiveEarlyCashOutRecorded(p, data.logs)
+              ? (p.cashOut / 100).toFixed(2)
+              : ''
         })
         setCashOuts(initial)
       } catch (err) {
