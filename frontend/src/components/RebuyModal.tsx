@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { parseDollarsToCents } from '../utils/format'
+import { BUY_IN_QUICK_AMOUNTS } from '../utils/buyInQuickAmounts'
 import { useI18n } from '../i18n'
 
 interface RebuyModalProps {
@@ -21,8 +22,6 @@ export default function RebuyModal({ playerName, onClose, onRebuy }: RebuyModalP
     await onRebuy(parseDollarsToCents(amount))
     setLoading(false)
   }
-
-  const quickAmounts = [50, 100, 200, 500]
 
   return (
     <div className="fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50">
@@ -46,7 +45,7 @@ export default function RebuyModal({ playerName, onClose, onRebuy }: RebuyModalP
           </div>
           
           <div className="flex flex-wrap gap-2">
-            {quickAmounts.map((qa) => (
+            {BUY_IN_QUICK_AMOUNTS.map((qa) => (
               <button
                 key={qa}
                 type="button"

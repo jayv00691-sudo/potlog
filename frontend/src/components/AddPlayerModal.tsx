@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { parseDollarsToCents } from '../utils/format'
+import { BUY_IN_QUICK_AMOUNTS } from '../utils/buyInQuickAmounts'
 import { useI18n } from '../i18n'
 
 interface AddPlayerModalProps {
@@ -51,6 +52,18 @@ export default function AddPlayerModal({ onClose, onAdd }: AddPlayerModalProps) 
               min="0"
               step="0.01"
             />
+            <div className="flex flex-wrap gap-2 mt-2">
+              {BUY_IN_QUICK_AMOUNTS.map((qa) => (
+                <button
+                  key={qa}
+                  type="button"
+                  onClick={() => setBuyIn(qa.toString())}
+                  className="bg-gray-700 px-3 py-1 rounded-lg text-sm hover:bg-gray-600"
+                >
+                  ${qa}
+                </button>
+              ))}
+            </div>
           </div>
           
           <div className="flex gap-3 pt-2">
