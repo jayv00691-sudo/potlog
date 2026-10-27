@@ -51,9 +51,9 @@ export default function HomePage() {
         {/* Logo */}
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-poker-red border-4 border-poker-gold mb-4">
-            <span className="text-3xl font-bold text-white">P</span>
+            <span className="text-3xl font-bold text-gray-900">P</span>
           </div>
-          <h1 className="text-4xl font-bold text-white mb-2">PotLog</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">PotLog</h1>
           <p className="text-gray-400">{t.home.subtitle}</p>
         </div>
 
@@ -76,9 +76,9 @@ export default function HomePage() {
                 type="checkbox"
                 checked={adminOnly}
                 onChange={(e) => setAdminOnly(e.target.checked)}
-                className="rounded border-gray-600 bg-gray-700 text-poker-gold focus:ring-poker-gold"
+                className="rounded border-gray-200 bg-gray-100 text-slate-800 focus:ring-poker-gold"
               />
-              <span className="text-sm text-gray-300">{t.admin.adminOnly}</span>
+              <span className="text-sm text-gray-600">{t.admin.adminOnly}</span>
             </label>
             <button
               onClick={handleCreate}
@@ -115,7 +115,7 @@ export default function HomePage() {
 
         {/* Error Message */}
         {error && (
-          <div className="bg-red-900/50 border border-red-700 text-red-300 rounded-lg p-3 mb-6 text-center">
+          <div className="bg-rose-50 border border-rose-200 text-rose-600 rounded-lg p-3 mb-6 text-center">
             {error}
           </div>
         )}
@@ -128,15 +128,15 @@ export default function HomePage() {
               {history.map((item) => (
                 <div
                   key={item.numericId}
-                  className="flex items-center justify-between p-3 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition-colors cursor-pointer"
+                  className="flex items-center justify-between p-3 bg-gray-100/50 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer"
                   onClick={() => navigate(`/${item.numericId}`)}
                 >
                   <div>
-                    <span className="font-mono text-lg text-poker-gold">{item.numericId}</span>
+                    <span className="font-mono text-lg text-slate-800">{item.numericId}</span>
                     <span className="text-gray-400 ml-3">{item.stakes}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-sm text-gray-500">
+                    <span className="text-sm text-gray-400">
                       {new Date(item.timestamp).toLocaleDateString()}
                     </span>
                     <button
@@ -144,7 +144,7 @@ export default function HomePage() {
                         e.stopPropagation()
                         removeFromHistory(item.numericId)
                       }}
-                      className="text-gray-500 hover:text-red-400 p-1"
+                      className="text-gray-400 hover:text-rose-600 p-1"
                     >
                       ✕
                     </button>

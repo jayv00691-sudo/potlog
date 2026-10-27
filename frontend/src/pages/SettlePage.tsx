@@ -183,7 +183,7 @@ export default function SettlePage() {
   if (error && !session) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-4">
-        <div className="text-red-400 text-xl mb-4">{error}</div>
+        <div className="text-rose-600 text-xl mb-4">{error}</div>
         <Link to="/" className="btn-secondary">{t.common.home}</Link>
       </div>
     )
@@ -200,7 +200,7 @@ export default function SettlePage() {
       <div className="max-w-lg mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
-          <Link to={`/${numericId}`} className="text-gray-400 hover:text-white">
+          <Link to={`/${numericId}`} className="text-gray-400 hover:text-gray-900">
             ← {t.common.back}
           </Link>
           <span className="text-gray-400">{t.settle.title}</span>
@@ -211,16 +211,16 @@ export default function SettlePage() {
           <div className="grid grid-cols-3 gap-4 text-center">
             <div>
               <div className="text-sm text-gray-400 mb-1">{t.settle.totalBuyIn}</div>
-              <div className="text-xl font-semibold text-white">{formatCents(totalBuyIn)}</div>
+              <div className="text-xl font-semibold text-gray-900">{formatCents(totalBuyIn)}</div>
             </div>
             <div>
               <div className="text-sm text-gray-400 mb-1">{t.settle.totalCashOut}</div>
-              <div className="text-xl font-semibold text-white">{formatCents(totalCashOut)}</div>
+              <div className="text-xl font-semibold text-gray-900">{formatCents(totalCashOut)}</div>
             </div>
             <div>
               <div className="text-sm text-gray-400 mb-1">{t.settle.difference}</div>
               <div className={`text-xl font-semibold ${
-                diff === 0 ? 'text-green-400' : 'text-yellow-400'
+                diff === 0 ? 'text-emerald-600' : 'text-amber-600'
               }`}>
                 {diff >= 0 ? '+' : ''}{formatCents(diff)}
               </div>
@@ -230,11 +230,11 @@ export default function SettlePage() {
           {allFilled && (
             <div className={`mt-4 p-3 rounded-lg ${
               diff !== 0
-                ? 'bg-yellow-900/30 border border-yellow-700/50'
-                : 'bg-gray-800/50'
+                ? 'bg-amber-50 border border-amber-200'
+                : 'bg-white/50'
             }`}>
               {diff !== 0 && (
-                <div className="text-yellow-400 text-sm mb-2">
+                <div className="text-amber-600 text-sm mb-2">
                   {t.settle.diffWarning.replace('{amount}', formatCents(Math.abs(diff)))}
                 </div>
               )}
@@ -247,8 +247,8 @@ export default function SettlePage() {
                         onClick={() => setBalanceMode('MAX_WINNER')}
                         className={`flex-1 py-2 px-3 rounded-lg text-sm transition-colors ${
                           balanceMode === 'MAX_WINNER'
-                            ? 'bg-poker-gold text-black'
-                            : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                            ? 'bg-gray-900 text-white'
+                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                         }`}
                       >
                         {t.settle.maxWinner}
@@ -257,8 +257,8 @@ export default function SettlePage() {
                         onClick={() => setBalanceMode('PROPORTIONAL')}
                         className={`flex-1 py-2 px-3 rounded-lg text-sm transition-colors ${
                           balanceMode === 'PROPORTIONAL'
-                            ? 'bg-poker-gold text-black'
-                            : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                            ? 'bg-gray-900 text-white'
+                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                         }`}
                       >
                         {t.settle.proportional}
@@ -267,21 +267,21 @@ export default function SettlePage() {
                         onClick={() => setBalanceMode('DEALER')}
                         className={`flex-1 py-2 px-3 rounded-lg text-sm transition-colors ${
                           balanceMode === 'DEALER'
-                            ? 'bg-poker-gold text-black'
-                            : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                            ? 'bg-gray-900 text-white'
+                            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                         }`}
                       >
                         {t.settle.dealer}
                       </button>
                     </div>
                     {balanceDetails.length > 0 && (
-                      <div className="mt-3 pt-3 border-t border-yellow-700/30">
+                      <div className="mt-3 pt-3 border-t border-amber-200">
                         <div className="text-gray-400 text-sm mb-2">{t.settle.balanceDetails}</div>
                         <div className="space-y-1.5">
                           {balanceDetails.map(({ playerId, playerName, adjustment }) => (
                             <div key={playerId} className="flex justify-between text-sm">
-                              <span className="text-white">{playerName}</span>
-                              <span className="text-poker-gold font-medium">
+                              <span className="text-gray-900">{playerName}</span>
+                              <span className="text-slate-800 font-medium">
                                 {t.settle.bearsDiff} {adjustment >= 0 ? '+' : ''}{formatCents(adjustment)}
                               </span>
                             </div>
@@ -298,10 +298,10 @@ export default function SettlePage() {
                     disabled={balanceMode === 'DEALER'}
                     className={`flex-1 py-2 px-3 rounded-lg text-sm transition-colors ${
                       balanceMode === 'DEALER'
-                        ? 'bg-gray-800 text-gray-500 cursor-not-allowed'
+                        ? 'bg-white text-gray-400 cursor-not-allowed'
                         : transferMode === 'MINIMAL'
-                          ? 'bg-poker-gold text-black'
-                          : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                          ? 'bg-gray-900 text-white'
+                          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                     }`}
                   >
                     {t.settle.transferMinimal}
@@ -310,8 +310,8 @@ export default function SettlePage() {
                     onClick={() => setTransferMode('CENTRAL')}
                     className={`flex-1 py-2 px-3 rounded-lg text-sm transition-colors ${
                       transferMode === 'CENTRAL'
-                        ? 'bg-poker-gold text-black'
-                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                        ? 'bg-gray-900 text-white'
+                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                     }`}
                   >
                     {t.settle.transferCentral}
@@ -323,7 +323,7 @@ export default function SettlePage() {
                     <select
                       value={dealerPlayerId ?? ''}
                       onChange={(e) => setDealerPlayerId(e.target.value || null)}
-                      className="w-full px-3 py-2 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-poker-gold focus:outline-none"
+                      className="w-full px-3 py-2 rounded-lg bg-gray-100 text-gray-900 border border-gray-200 focus:border-indigo-500 focus:outline-none"
                     >
                       {session.players.map((p) => (
                         <option key={p.id} value={p.id}>{p.name}</option>
@@ -370,13 +370,13 @@ export default function SettlePage() {
 
         {/* 错误提示 */}
         {error && (
-          <div className="bg-red-900/50 border border-red-700 text-red-300 rounded-lg p-3 mb-6 text-center">
+          <div className="bg-rose-50 border border-rose-200 text-rose-600 rounded-lg p-3 mb-6 text-center">
             {error}
           </div>
         )}
 
         {/* Settle Button */}
-        <div className="fixed bottom-0 left-0 right-0 p-4 bg-gray-900/95 border-t border-gray-700">
+        <div className="fixed bottom-0 left-0 right-0 p-4 bg-gray-50/95 border-t border-gray-200">
           <div className="max-w-lg mx-auto">
             <button
               onClick={handleSettle}
@@ -387,7 +387,7 @@ export default function SettlePage() {
               {settling ? t.settle.settling : t.settle.complete}
             </button>
             {!allFilled && (
-              <p className="text-center text-gray-500 text-sm mt-2">
+              <p className="text-center text-gray-400 text-sm mt-2">
                 {t.settle.enterAllCashOuts}
               </p>
             )}

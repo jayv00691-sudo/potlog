@@ -30,8 +30,8 @@ export default function TransferModal({ players, onClose, onTransfer }: Transfer
   const quickAmounts = [20, 50, 100, 200]
 
   return (
-    <div className="fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50">
-      <div className="bg-gray-800 rounded-xl p-6 w-full max-w-sm border border-gray-700">
+    <div className="fixed inset-0 bg-gray-900/40 flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-xl p-6 w-full max-w-sm border border-gray-200">
         <h3 className="text-xl font-semibold mb-4">{t.transfer.addTransfer}</h3>
         <p className="text-gray-400 text-sm mb-4">
           {t.transfer.transferHint}
@@ -55,7 +55,7 @@ export default function TransferModal({ players, onClose, onTransfer }: Transfer
           </div>
           
           <div className="flex justify-center">
-            <span className="text-2xl text-gray-500">↓</span>
+            <span className="text-2xl text-gray-400">↓</span>
           </div>
           
           <div>
@@ -93,7 +93,7 @@ export default function TransferModal({ players, onClose, onTransfer }: Transfer
                 key={qa}
                 type="button"
                 onClick={() => setAmount(qa.toString())}
-                className="bg-gray-700 px-3 py-1 rounded-lg text-sm hover:bg-gray-600"
+                className="bg-gray-100 px-3 py-1 rounded-lg text-sm hover:bg-gray-200"
               >
                 ${qa}
               </button>

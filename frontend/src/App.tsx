@@ -6,7 +6,7 @@ import Header from './components/Header'
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-900 to-poker-green">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-gray-50 to-poker-green">
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />

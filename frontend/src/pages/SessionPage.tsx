@@ -181,7 +181,7 @@ export default function SessionPage() {
   if (error || !session) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-4">
-        <div className="text-red-400 text-xl mb-4">{error || t.session.sessionNotFound}</div>
+        <div className="text-rose-600 text-xl mb-4">{error || t.session.sessionNotFound}</div>
         <Link to="/" className="btn-secondary">{t.common.home}</Link>
       </div>
     )
@@ -195,19 +195,19 @@ export default function SessionPage() {
       <div className="max-w-lg mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between gap-3 mb-6 flex-shrink-0">
-          <Link to="/" className="text-gray-400 hover:text-white shrink-0">
+          <Link to="/" className="text-gray-400 hover:text-gray-900 shrink-0">
             ← {t.common.back}
           </Link>
           <button
             onClick={handleCopyLink}
-            className="text-sm bg-gray-700 px-3 py-1 rounded-lg hover:bg-gray-600 shrink-0"
+            className="text-sm bg-gray-100 px-3 py-1 rounded-lg hover:bg-gray-200 shrink-0"
           >
             {t.common.copyLink}
           </button>
         </div>
 
         {session.adminOnly && !isAdmin && (
-          <div className="mb-4 p-3 bg-amber-900/30 border border-amber-700/50 rounded-lg text-amber-200 text-sm text-center">
+          <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-amber-700 text-sm text-center">
             {t.admin.viewOnly}
           </div>
         )}
@@ -216,27 +216,27 @@ export default function SessionPage() {
         <div className="card mb-6">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
             <div>
-              <div className="text-3xl font-mono text-poker-gold">{session.numericId}</div>
+              <div className="text-3xl font-mono text-slate-800">{session.numericId}</div>
               <div className="text-gray-400">{t.session.blinds}: {session.stakes}</div>
             </div>
             <div className="flex flex-wrap items-center gap-2">
               {session.adminOnly && !isAdmin && (
                 <button
                   onClick={() => setShowBecomeAdmin(true)}
-                  className="text-sm bg-poker-gold/20 text-poker-gold px-3 py-1 rounded-lg hover:bg-poker-gold/30"
+                  className="text-sm bg-slate-100 text-slate-800 px-3 py-1 rounded-lg hover:bg-slate-100"
                 >
                   {t.admin.becomeAdmin}
                 </button>
               )}
               <div className={`px-3 py-1 rounded-full text-sm ${
-                isSettled ? 'bg-green-900/50 text-green-400' : 'bg-blue-900/50 text-blue-400'
+                isSettled ? 'bg-emerald-50 text-emerald-600' : 'bg-indigo-50 text-indigo-600'
               }`}>
                 {isSettled ? t.session.settled : t.session.active}
               </div>
               {isSettled && isAdmin && (
                 <button
                   onClick={handleReopen}
-                  className="text-sm bg-yellow-700/30 text-yellow-400 px-3 py-1 rounded-lg hover:bg-yellow-700/50"
+                  className="text-sm bg-amber-50 text-amber-600 px-3 py-1 rounded-lg hover:bg-amber-100"
                 >
                   {t.session.reSettle}
                 </button>
@@ -244,14 +244,14 @@ export default function SessionPage() {
             </div>
           </div>
           
-          <div className="bg-poker-green/30 rounded-lg p-4 text-center">
+          <div className="bg-emerald-50 rounded-lg p-4 text-center">
             <div className="text-sm text-gray-400 mb-1">Total Pot</div>
-            <div className="text-3xl font-bold text-white">{formatCents(totalPot)}</div>
+            <div className="text-3xl font-bold text-gray-900">{formatCents(totalPot)}</div>
           </div>
 
           {session.adminOnly && isAdmin && adminPassword && (
-            <div className="mt-4 pt-4 border-t border-gray-600">
-              <label className="block text-xs text-gray-500 mb-2">{t.admin.adminPassword}</label>
+            <div className="mt-4 pt-4 border-t border-gray-200">
+              <label className="block text-xs text-gray-400 mb-2">{t.admin.adminPassword}</label>
               <AdminPasswordInput value={adminPassword} readOnly />
             </div>
           )}
@@ -266,7 +266,7 @@ export default function SessionPage() {
             {!isSettled && isAdmin && (
               <button
                 onClick={() => setShowAddPlayer(true)}
-                className="bg-poker-gold/20 text-poker-gold px-4 py-2 rounded-lg hover:bg-poker-gold/30 transition-colors"
+                className="bg-slate-100 text-slate-800 px-4 py-2 rounded-lg hover:bg-slate-100 transition-colors"
               >
                 + {t.session.addPlayer}
               </button>
@@ -274,7 +274,7 @@ export default function SessionPage() {
           </div>
           
           {session.players.length === 0 ? (
-            <div className="text-center text-gray-500 py-8">
+            <div className="text-center text-gray-400 py-8">
               {t.session.noPlayers}
             </div>
           ) : (
@@ -335,9 +335,9 @@ export default function SessionPage() {
                 </span>
               </button>
               {buyInLogExpanded && (
-                <div className="mt-4 pt-4 border-t border-gray-600">
+                <div className="mt-4 pt-4 border-t border-gray-200">
                   {ledgerLogs.length === 0 ? (
-                    <div className="text-center text-gray-500 py-4 text-sm">
+                    <div className="text-center text-gray-400 py-4 text-sm">
                       {t.session.buyInLogEmpty}
                     </div>
                   ) : (
@@ -345,14 +345,14 @@ export default function SessionPage() {
                       {ledgerLogs.map((log: TransactionLog) => (
                         <div
                           key={log.id}
-                          className="flex items-center justify-between py-2 px-3 bg-gray-700/30 rounded-lg text-sm"
+                          className="flex items-center justify-between py-2 px-3 bg-gray-100/30 rounded-lg text-sm"
                         >
                           <div className="flex flex-col gap-0.5">
-                            <span className="font-medium text-white">{descFor(log)}</span>
-                            <span className="text-gray-500 text-xs">{labelFor(log.type)} · {formatLogTime(log.timestamp, locale)}</span>
+                            <span className="font-medium text-gray-900">{descFor(log)}</span>
+                            <span className="text-gray-400 text-xs">{labelFor(log.type)} · {formatLogTime(log.timestamp, locale)}</span>
                           </div>
                           <span className={`font-semibold ${
-                            log.type === 'CASH_OUT' ? 'text-blue-400' : 'text-poker-gold'
+                            log.type === 'CASH_OUT' ? 'text-indigo-600' : 'text-slate-800'
                           }`}>
                             {log.type === 'REBUY' || log.type === 'BUY_IN' ? '+' : ''}{formatCents(log.amount)}
                           </span>
@@ -376,7 +376,7 @@ export default function SessionPage() {
               {isAdmin && (
               <button
                 onClick={() => setShowTransfer(true)}
-                className="bg-blue-700/30 text-blue-400 px-4 py-2 rounded-lg hover:bg-blue-700/50 transition-colors"
+                className="bg-indigo-50 text-indigo-600 px-4 py-2 rounded-lg hover:bg-indigo-100 transition-colors"
               >
                 + {t.session.addTransfer}
               </button>
@@ -384,7 +384,7 @@ export default function SessionPage() {
             </div>
             
             {session.transfers.length === 0 ? (
-              <div className="text-center text-gray-500 py-4 text-sm">
+              <div className="text-center text-gray-400 py-4 text-sm">
                 {t.session.transferHint}
               </div>
             ) : (
@@ -412,14 +412,14 @@ export default function SessionPage() {
               {session.players.length >= 2 && isAdmin && (
                 <button
                   onClick={() => setShowTransfer(true)}
-                  className="bg-blue-700/30 text-blue-400 px-4 py-2 rounded-lg hover:bg-blue-700/50 transition-colors"
+                  className="bg-indigo-50 text-indigo-600 px-4 py-2 rounded-lg hover:bg-indigo-100 transition-colors"
                 >
                   + {t.session.addTransfer}
                 </button>
               )}
             </div>
             {session.transfers.length === 0 ? (
-              <div className="text-center text-gray-500 py-4 text-sm">
+              <div className="text-center text-gray-400 py-4 text-sm">
                 {t.session.transferHint}
               </div>
             ) : (
@@ -461,7 +461,7 @@ export default function SessionPage() {
 
         {/* Bottom Action Bar */}
         {!isSettled && session.players.length >= 2 && isAdmin && (
-          <div className="fixed bottom-0 left-0 right-0 p-4 bg-gray-900/95 border-t border-gray-700">
+          <div className="fixed bottom-0 left-0 right-0 p-4 bg-gray-50/95 border-t border-gray-200">
             <div className="max-w-lg mx-auto">
               <button
                 onClick={() => navigate(`/${numericId}/settle`)}

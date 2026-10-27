@@ -30,7 +30,7 @@ export default function Header() {
         href={`https://github.com/${GITHUB_REPO}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="bg-gray-700/80 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
+        className="bg-gray-100/80 hover:bg-gray-200 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
         title="View on GitHub"
       >
         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -43,10 +43,10 @@ export default function Header() {
         href={`https://github.com/${GITHUB_REPO}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="bg-gray-700/80 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
+        className="bg-gray-100/80 hover:bg-gray-200 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
         title="Star on GitHub"
       >
-        <svg className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+        <svg className="w-4 h-4 text-amber-600" fill="currentColor" viewBox="0 0 24 24">
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
         </svg>
         <span>Star{starCount !== null ? ` ${starCount}` : ''}</span>
@@ -54,7 +54,7 @@ export default function Header() {
       
       <button
         onClick={toggleLocale}
-        className="bg-gray-700/80 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
+        className="bg-gray-100/80 hover:bg-gray-200 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
         title={locale === 'en' ? 'Switch to Chinese' : '切换到英文'}
       >
         <span className="text-base">🌐</span>

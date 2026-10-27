@@ -23,7 +23,7 @@ export function formatNet(cents: number): string {
 }
 
 export function formatNetClass(cents: number): string {
-  if (cents > 0) return 'text-green-400'
-  if (cents < 0) return 'text-red-400'
+  if (cents > 0) return 'text-emerald-600'
+  if (cents < 0) return 'text-rose-600'
   return 'text-gray-400'
 }

@@ -32,8 +32,8 @@ export default function BecomeAdminModal({ onClose, onVerify }: BecomeAdminModal
   }
 
   return (
-    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4" onClick={onClose}>
-      <div className="bg-gray-800 rounded-xl p-6 w-full max-w-sm shadow-xl" onClick={e => e.stopPropagation()}>
+    <div className="fixed inset-0 bg-gray-900/40 flex items-center justify-center z-50 p-4" onClick={onClose}>
+      <div className="bg-white rounded-xl p-6 w-full max-w-sm shadow-xl" onClick={e => e.stopPropagation()}>
         <h3 className="text-xl font-semibold mb-4">{t.admin.becomeAdmin}</h3>
         <p className="text-gray-400 text-sm mb-4">{t.admin.enterPassword}</p>
         <div className="relative">
@@ -49,7 +49,7 @@ export default function BecomeAdminModal({ onClose, onVerify }: BecomeAdminModal
           <button
             type="button"
             onClick={() => setVisible(!visible)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white p-1"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-900 p-1"
           >
             {visible ? (
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -63,7 +63,7 @@ export default function BecomeAdminModal({ onClose, onVerify }: BecomeAdminModal
             )}
           </button>
         </div>
-        {error && <p className="text-red-400 text-sm mt-2">{error}</p>}
+        {error && <p className="text-rose-600 text-sm mt-2">{error}</p>}
         <div className="flex gap-3 mt-6">
           <button onClick={onClose} className="btn-secondary flex-1">
             {t.common.cancel}

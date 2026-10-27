@@ -21,7 +21,7 @@ export default function AdminPasswordInput({
       <button
         type="button"
         onClick={() => setVisible(!visible)}
-        className="absolute right-3 text-gray-400 hover:text-white p-1"
+        className="absolute right-3 text-gray-400 hover:text-gray-900 p-1"
         aria-label={visible ? 'Hide' : 'Show'}
       >
         {visible ? (

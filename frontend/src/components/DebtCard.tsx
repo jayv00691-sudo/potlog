@@ -32,8 +32,8 @@ export default function DebtCard({ debt, players, onSettle }: DebtCardProps) {
   return (
     <div className={`p-4 rounded-lg border ${
       isFullySettled 
-        ? 'bg-green-900/20 border-green-700/50' 
-        : 'bg-gray-700/50 border-gray-600'
+        ? 'bg-emerald-50 border-green-700/50' 
+        : 'bg-gray-100/50 border-gray-200'
     }`}>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
@@ -48,7 +48,7 @@ export default function DebtCard({ debt, players, onSettle }: DebtCardProps) {
         </div>
         
         <div className="text-right">
-          <div className={`text-lg font-semibold ${isFullySettled ? 'text-green-400 line-through' : 'text-white'}`}>
+          <div className={`text-lg font-semibold ${isFullySettled ? 'text-emerald-600 line-through' : 'text-gray-900'}`}>
             {formatCents(debt.amount)}
           </div>
           {debt.settledAmount > 0 && !isFullySettled && (
@@ -61,12 +61,12 @@ export default function DebtCard({ debt, players, onSettle }: DebtCardProps) {
       
       {!isFullySettled && (
         <div className="mt-3 flex items-center justify-between">
-          <span className="text-xs text-gray-500">{t.debt.settleHint}</span>
+          <span className="text-xs text-gray-400">{t.debt.settleHint}</span>
           {onSettle && (
           <button
             onClick={handleSettle}
             disabled={loading}
-            className="bg-green-700 text-white px-4 py-1.5 rounded-lg text-sm hover:bg-green-600 disabled:opacity-50"
+            className="bg-green-700 text-gray-900 px-4 py-1.5 rounded-lg text-sm hover:bg-green-600 disabled:opacity-50"
           >
             {loading ? t.common.processing : t.debt.markSettled}
           </button>
@@ -75,7 +75,7 @@ export default function DebtCard({ debt, players, onSettle }: DebtCardProps) {
       )}
       
       {isFullySettled && (
-        <div className="mt-2 text-green-400 text-sm text-right">
+        <div className="mt-2 text-emerald-600 text-sm text-right">
           ✓ {t.debt.fullySettled}
         </div>
       )}

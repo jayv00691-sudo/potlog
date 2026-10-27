@@ -8,11 +8,11 @@ export default {
     extend: {
       colors: {
         poker: {
-          green: '#1a472a',
-          felt: '#2d5a3d',
-          gold: '#d4af37',
-          red: '#c41e3a',
-          black: '#1a1a1a',
+          green: '#ecfdf5',
+          felt: '#f0fdf4',
+          gold: '#1e293b',
+          red: '#e11d48',
+          black: '#0f172a',
         }
       },
       animation: {

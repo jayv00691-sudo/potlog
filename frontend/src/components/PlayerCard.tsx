@@ -25,20 +25,20 @@ export default function PlayerCard({
   const { t } = useI18n()
   
   return (
-    <div className="bg-gray-700/50 rounded-lg p-4 flex items-center justify-between">
+    <div className="bg-gray-100/50 rounded-lg p-4 flex items-center justify-between">
       <div className="flex items-center gap-3">
         <div className="chip">{player.name.charAt(0).toUpperCase()}</div>
         <div>
-          <div className="font-medium text-white">{player.name}</div>
+          <div className="font-medium text-gray-900">{player.name}</div>
           <div className="text-sm text-gray-400">
             {t.player.buyIn}: {formatCents(player.buyIn)}
             {(player.cashOut > 0 || hasEarlyCashOutRecorded) && !isSettled && (
-              <span className="ml-2 text-green-400">
+              <span className="ml-2 text-emerald-600">
                 · {t.player.cashOut}: {formatCents(player.cashOut)}
                 {onRevokeCashOut && (
                   <button
                     onClick={(e) => { e.stopPropagation(); onRevokeCashOut() }}
-                    className="ml-2 text-xs text-gray-400 hover:text-amber-400"
+                    className="ml-2 text-xs text-gray-400 hover:text-amber-600"
                     title={t.player.revokeCashOut}
                   >
                     ({t.player.revokeCashOut})
@@ -62,7 +62,7 @@ export default function PlayerCard({
             {onRebuy && (
               <button
                 onClick={onRebuy}
-                className="bg-poker-gold/20 text-poker-gold px-3 py-1 rounded-lg text-sm hover:bg-poker-gold/30 transition-colors"
+                className="bg-slate-100 text-slate-800 px-3 py-1 rounded-lg text-sm hover:bg-slate-100 transition-colors"
               >
                 + {t.player.rebuy}
               </button>
@@ -70,7 +70,7 @@ export default function PlayerCard({
             {onCashOut && (
               <button
                 onClick={onCashOut}
-                className="bg-green-700/30 text-green-400 px-3 py-1 rounded-lg text-sm hover:bg-green-700/50 transition-colors"
+                className="bg-emerald-50 text-emerald-600 px-3 py-1 rounded-lg text-sm hover:bg-green-700/50 transition-colors"
               >
                 {t.player.earlyCashOut}
               </button>

@@ -29,11 +29,11 @@ export default function CashOutModal({ playerName, onClose, onCashOut }: CashOut
   const quickAmounts = [50, 100, 200, 500]
 
   return (
-    <div className="fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50">
-      <div className="bg-gray-800 rounded-xl p-6 w-full max-w-sm border border-gray-700">
+    <div className="fixed inset-0 bg-gray-900/40 flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-xl p-6 w-full max-w-sm border border-gray-200">
         <h3 className="text-xl font-semibold mb-2">{t.cashOut.title}</h3>
         <p className="text-gray-400 mb-1">{playerName}</p>
-        <p className="text-gray-500 text-sm mb-4">{t.cashOut.hint}</p>
+        <p className="text-gray-400 text-sm mb-4">{t.cashOut.hint}</p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -56,7 +56,7 @@ export default function CashOutModal({ playerName, onClose, onCashOut }: CashOut
                 key={qa}
                 type="button"
                 onClick={() => setAmount(qa.toString())}
-                className="bg-gray-700 px-3 py-1 rounded-lg text-sm hover:bg-gray-600"
+                className="bg-gray-100 px-3 py-1 rounded-lg text-sm hover:bg-gray-200"
               >
                 ${qa}
               </button>

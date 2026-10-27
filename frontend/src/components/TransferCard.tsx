@@ -15,31 +15,31 @@ export default function TransferCard({ transfer, players, onRemove, isSettled: _
   const toPlayer = players.find(p => p.id === transfer.toPlayerId)
 
   return (
-    <div className="p-3 rounded-lg bg-blue-900/30 border border-blue-700/50 flex items-center justify-between">
+    <div className="p-3 rounded-lg bg-indigo-50 border border-blue-700/50 flex items-center justify-between">
       <div className="flex items-center gap-2">
         <div className="chip text-xs bg-blue-700">{fromPlayer?.name.charAt(0) || '?'}</div>
-        <span className="text-blue-300">→</span>
+        <span className="text-indigo-600">→</span>
         <div className="chip text-xs bg-green-700">{toPlayer?.name.charAt(0) || '?'}</div>
         <div className="ml-2">
-          <span className="font-medium text-blue-300">{fromPlayer?.name}</span>
+          <span className="font-medium text-indigo-600">{fromPlayer?.name}</span>
           <span className="text-gray-400 mx-2">{t.transfer.transferTo}</span>
           <span className="font-medium text-green-300">{toPlayer?.name}</span>
         </div>
       </div>
       
       <div className="flex items-center gap-3">
-        <span className="text-lg font-semibold text-white">
+        <span className="text-lg font-semibold text-gray-900">
           {formatCents(transfer.amount)}
         </span>
         {transfer.note && (
-          <span className="text-xs text-gray-500 max-w-20 truncate" title={transfer.note}>
+          <span className="text-xs text-gray-400 max-w-20 truncate" title={transfer.note}>
             ({transfer.note})
           </span>
         )}
         {onRemove && (
           <button
             onClick={onRemove}
-            className="text-gray-500 hover:text-red-400 p-1"
+            className="text-gray-400 hover:text-rose-600 p-1"
             title={t.transfer.deleteTitle}
           >
             ✕
